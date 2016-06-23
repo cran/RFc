@@ -7,12 +7,12 @@
 fcGrid(variable, latitudeFrom, latitudeTo, latitudeBy, longitudeFrom,
   longitudeTo, longitudeBy, firstYear = 1961, lastYear = 1990,
   firstDay = 1, lastDay = 365, startHour = 0, stopHour = 24,
-  url = "http://fc.itis.cs.msu.ru/", dataSets = "ANY",
-  reproduceFor = "NOW")
+  url = "http://fetchclimate2.cloudapp.net/", dataSets = "ANY",
+  reproduceFor = "NOW", verbose = F)
 }
 \arguments{
-\item{variable}{An identifier of the variable to fetch.
-To see the full list of supported variables navigate to the service url with the browser (e.g. http://fc.itis.cs.msu.ru), explore the "What?" tab in the web application for available variables list.}
+\item{variable}{An identifier of the variable to fetch. \cr
+To get the list of available variables use `fcVariables()` function or see "Available data" section of documentaion}
 
 \item{latitudeFrom}{A numeric scalar. The lower latitude bound of the spatial grid}
 
@@ -34,15 +34,17 @@ To see the full list of supported variables navigate to the service url with the
 
 \item{lastDay}{A numeric scalar. Temporal coverage definition: The upper bound of the days interval within each year over which the averaging is performed}
 
-\item{startHour}{A numeric scalar. Temporal coverage definition: The lower bound of the days interval within each year over which the averaging is performed}
+\item{startHour}{A numeric scalar. Temporal coverage definition: The lower bound of the hours interval within each day over which the averaging is performed}
 
-\item{stopHour}{A numeric scalar. Temporal coverage definition: The upper bound of the days interval within each year over which the averaging is performed}
+\item{stopHour}{A numeric scalar. Temporal coverage definition: The upper bound of the hours interval within each day over which the averaging is performed}
 
 \item{url}{The URL of the service to query the data from}
 
 \item{dataSets}{A character vector. An identifier of the data set to fetch the data from. The special value "ANY" enables data stitching from all available data sets.}
 
 \item{reproduceFor}{A character scalar. A string containing the time for which the result must correspond. The format is "YYYY-MM-DD". The special value "NOW" fetch the data using the latest FetchClimate configuration available.}
+
+\item{verbose}{A logical scalar. If set to TRUE the method outputs its actions verbosely}
 }
 \value{
 Type: SpatialPixelsDataFrame (from sp package)

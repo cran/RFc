@@ -8,23 +8,23 @@
 \title{Fetches time series data for a set of locations}
 \usage{
 fcTimeSeriesYearly(variable, latitude, longitude, firstYear, lastYear,
-  firstDay = 1, lastDay = 365, startHour = 0, stopHour = 24,
-  url = "http://fc.itis.cs.msu.ru/", dataSets = "ANY",
-  reproduceFor = "NOW")
+  firstDay = 1, lastDay = 365, startHour = 0, stopHour = 23,
+  url = "http://fetchclimate2.cloudapp.net/", dataSets = "ANY",
+  reproduceFor = "NOW", verbose = F)
 
 fcTimeSeriesDaily(variable, latitude, longitude, firstDay = 1,
   lastDay = 365, firstYear = 1961, lastYear = 1990, startHour = 0,
-  stopHour = 24, url = "http://fc.itis.cs.msu.ru/", dataSets = "ANY",
-  reproduceFor = "NOW")
+  stopHour = 23, url = "http://fetchclimate2.cloudapp.net/",
+  dataSets = "ANY", reproduceFor = "NOW", verbose = F)
 
 fcTimeSeriesHourly(variable, latitude, longitude, startHour, stopHour,
   firstYear = 1961, lastYear = 1990, firstDay = 1, lastDay = 365,
-  url = "http://fc.itis.cs.msu.ru/", dataSets = "ANY",
-  reproduceFor = "NOW")
+  url = "http://fetchclimate2.cloudapp.net/", dataSets = "ANY",
+  reproduceFor = "NOW", verbose = F)
 }
 \arguments{
-\item{variable}{An identifier of the variable to fetch.
-To see the full list of supported variables navigate to the service url with the browser (e.g. http://fc.itis.cs.msu.ru), explore the "What?" tab in the web application for available variables list.}
+\item{variable}{An identifier of the variable to fetch. \cr
+To get the list of available variables use `fcVariables()` function or see "Available data" section of documentaion}
 
 \item{latitude}{A numeric vector. Latitudes of the point set to fetch values for}
 
@@ -38,15 +38,17 @@ To see the full list of supported variables navigate to the service url with the
 
 \item{lastDay}{A numeric scalar. Temporal coverage definition: The upper bound of the days interval within each year over which the averaging is performed}
 
-\item{startHour}{A numeric scalar. Temporal coverage definition: The lower bound of the days interval within each year over which the averaging is performed}
+\item{startHour}{A numeric scalar. Temporal coverage definition: The lower bound of the hours interval within each day over which the averaging is performed}
 
-\item{stopHour}{A numeric scalar. Temporal coverage definition: The upper bound of the days interval within each year over which the averaging is performed}
+\item{stopHour}{A numeric scalar. Temporal coverage definition: The upper bound of the hours interval within each day over which the averaging is performed}
 
 \item{url}{The URL of the service to query the data from}
 
 \item{dataSets}{A character vector. An identifier of the data set to fetch the data from. The special value "ANY" enables data stitching from all available data sets.}
 
 \item{reproduceFor}{A character scalar. A string containing the time for which the result must correspond. The format is "YYYY-MM-DD". The special value "NOW" fetch the data using the latest FetchClimate configuration available.}
+
+\item{verbose}{A logical scalar. If set to TRUE the method outputs its actions verbosely}
 }
 \value{
 A list. Contains the following entries: values, sd, provenance.
@@ -76,7 +78,7 @@ fcTimeSeriesYearly(variable="airt",latitude=75.5, longitude=57.7,firstYear=1950,
 fcTimeSeriesHourly(variable="airt",latitude=55.5, longitude=37.3,
      firstDay=183,lastDay=213,
      firstYear=2008,lastYear=2008,
-     startHour=0,stopHour=24)
+     startHour=0,stopHour=23)
 
 }
 
